@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Architecture.UI
+namespace Assets._Project.Safe_Area_Formation
 {
     [RequireComponent(typeof(RectTransform))]
     public class SafeAreaFormater : MonoBehaviour
@@ -16,7 +16,7 @@ namespace Assets._Project.Architecture.UI
         public void Format()
         {
             Rect safeArea = Screen.safeArea;
-            Vector2 
+            Vector2
                 anchorMin = safeArea.position,
                 anchorMax = safeArea.position + safeArea.size;
 
