@@ -3,14 +3,15 @@ using UnityEngine;
 
 namespace Assets._Project.Architecture.Asset_Loading
 {
-    public abstract class AssetLoader : IAssetLoader
+    public abstract class AssetLoader<T> : IAssetLoader<T>
     {
+        public abstract string Key { get; }
         public object Asset { get; protected set; }
 
-        public abstract T Load<T>(string key);
-        public abstract T LoadAndInstantiate<T>(string key, Transform parent) where T : Component;
-        public abstract Task<T> LoadAsync<T>(string key);
-        public abstract Task<T> LoadAndInstantiateAsync<T>(string key, Transform parent) where T : Component;
+        public abstract T Load();
+        public abstract T LoadAndInstantiate(Transform parent);
+        public abstract Task<T> LoadAndInstantiateAsync(Transform parent);
+        public abstract Task<T> LoadAsync();
 
         public void Unload()
         {
