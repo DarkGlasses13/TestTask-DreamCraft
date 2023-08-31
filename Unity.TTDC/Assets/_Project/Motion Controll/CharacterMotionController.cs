@@ -1,16 +1,12 @@
 ﻿using Assets._Project.Actors.Player_Character;
 using Assets._Project.Architecture.Core;
 using Assets._Project.Input;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets._Project.Motion_Controll
 {
     public class CharacterMotionController : Controller
     {
-        private readonly CharacterConfigLoader _configLoader;
         private readonly IPlayerInput _playerInput;
         private readonly ICanMove _movable;
         private CharacterConfig _config;
@@ -18,16 +14,11 @@ namespace Assets._Project.Motion_Controll
         private Vector3 _motion;
         private float _rotationLerpTime;
 
-        public CharacterMotionController(CharacterConfigLoader configLoader, IPlayerInput playerInput, ICanMove movable)
+        public CharacterMotionController(CharacterConfig configLoader, IPlayerInput playerInput, ICanMove movable)
         {
-            _configLoader = configLoader;
+            _config = configLoader;
             _playerInput = playerInput;
             _movable = movable;
-        }
-
-        public override async Task InitializeAsync()
-        {
-            _config = await _configLoader.LoadAsync();
         }
 
         protected override void OnEnable()
