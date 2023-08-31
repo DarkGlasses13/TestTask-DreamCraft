@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Cameras
+  m_EditorClassIdentifier: 
+  m_GroupName: Cameras
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 5ef864dddf9580243911c5faee63d4d4
+  m_SerializeEntries:
+  - m_GUID: fb11bdc9ac5ab9c41af581a0933337ba
+    m_Address: Player Camera
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4a318929aa9ec7045a0eeb8aec42d410
+    m_Address: Characer Following VCam
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: bd8902980be272543bb08355fde5aba5, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: a455964291f64ee42853a62d438575f6, type: 2}
+    - {fileID: 11400000, guid: ca256db5be8071b4c9292e56f0cbfd93, type: 2}

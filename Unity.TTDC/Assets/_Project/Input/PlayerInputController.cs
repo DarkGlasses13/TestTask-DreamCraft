@@ -13,20 +13,20 @@ namespace Assets._Project.Input
 
         private Controls _inputActions;
 
-        public Vector2 MotionInput { get; private set; }
+        public Vector2 MotionInput => _inputActions.Character.Motion.ReadValue<Vector2>();
 
         protected override void OnEnable()
         {
             _inputActions ??= new();
             _inputActions?.Enable();
             _inputActions.Character.Motion.performed += Move;
+            _inputActions.Character.Motion.canceled += Move;
             _inputActions.Character.Attack.performed += Attack;
             _inputActions.Character.WeaponSwap.performed += SwapWeapon;
         }
 
         private void Move(InputAction.CallbackContext context)
         {
-            MotionInput = context.ReadValue<Vector2>();
             OnMotion?.Invoke(MotionInput);
         }
 
@@ -42,6 +42,10 @@ namespace Assets._Project.Input
 
         protected override void OnDisable()
         {
+            _inputActions.Character.Motion.performed -= Move;
+            _inputActions.Character.Motion.canceled -= Move;
+            _inputActions.Character.Attack.performed -= Attack;
+            _inputActions.Character.WeaponSwap.performed -= SwapWeapon;
             _inputActions?.Disable();
         }
     }
