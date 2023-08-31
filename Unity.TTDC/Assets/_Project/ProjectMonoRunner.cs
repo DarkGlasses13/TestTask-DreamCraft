@@ -1,10 +1,16 @@
-﻿namespace Assets._Project
+﻿using Assets._Project.Architecture.DI;
+
+namespace Assets._Project
 {
     public class ProjectMonoRunner : MonoRunner
     {
+        public IDIContainer Container { get; private set; }
+
         private void Awake()
         {
-            _runner = new ProjectRunner(canEnableAllControllers: false);
+            ProjectRunner runner = new(canEnableAllControllers: false);
+            Container = runner;
+            _runner = runner;
         }
     }
 }
