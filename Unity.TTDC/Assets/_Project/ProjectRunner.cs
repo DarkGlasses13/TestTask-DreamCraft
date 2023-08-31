@@ -6,7 +6,7 @@ namespace Assets._Project
 {
     public class ProjectRunner : Runner, IDIContainer
     {
-        private readonly List<object> _cintainer = new();
+        private readonly List<object> _container = new();
 
         public ProjectRunner(bool canEnableAllControllers) : base(canEnableAllControllers)
         {
@@ -18,18 +18,18 @@ namespace Assets._Project
 
         public void Bind<T>(T dependency)
         {
-            if (dependency != null && _cintainer.Contains(dependency) == false)
+            if (dependency != null && _container.Contains(dependency) == false)
             {
-                _cintainer.Add(dependency);
+                _container.Add(dependency);
             }
         }
 
         public T GetDependency<T>()
         {
-            return (T)_cintainer.SingleOrDefault(service => service is T);
+            return (T)_container.SingleOrDefault(service => service is T);
         }
 
-        public void Unbind<T>(T dependency) => _cintainer.Remove(dependency);
+        public void Unbind<T>(T dependency) => _container.Remove(dependency);
 
         protected override void OnControllersInitializedAndEnabled()
         {
