@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 public abstract class Runner : IRunnable
 {
@@ -15,6 +16,8 @@ public abstract class Runner : IRunnable
 
     public async void RunAsync()
     {
+        await CreateControllers();
+
         foreach (IController controller in _controllers)
         {
             await controller?.InitializeAsync();
@@ -29,6 +32,8 @@ public abstract class Runner : IRunnable
         _isStarted = true;
         OnControllersInitializedAndEnabled();
     }
+
+    protected abstract Task CreateControllers();
 
     public void Enable()
     {
