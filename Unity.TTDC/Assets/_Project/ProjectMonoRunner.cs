@@ -11,6 +11,12 @@ namespace Assets._Project
             ProjectRunner runner = new(canEnableAllControllers: false);
             Container = runner;
             _runner = runner;
+            DontDestroyOnLoad(this);
+        }
+
+        private void Start()
+        {
+            _runner.RunAsync();
         }
     }
 }
