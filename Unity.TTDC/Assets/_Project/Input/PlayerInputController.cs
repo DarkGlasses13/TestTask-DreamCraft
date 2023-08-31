@@ -15,11 +15,6 @@ namespace Assets._Project.Input
 
         public Vector2 MotionInput { get; private set; }
 
-        public PlayerInputController(Controls inputActions)
-        {
-            _inputActions = inputActions;
-        }
-
         protected override void OnEnable()
         {
             _inputActions ??= new();

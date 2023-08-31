@@ -1,4 +1,5 @@
 ﻿using Assets._Project.Architecture.DI;
+using Assets._Project.Input;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,7 +13,7 @@ namespace Assets._Project
         {
             _controllers = new IController[]
             {
-
+                new PlayerInputController(),
             };
         }
 

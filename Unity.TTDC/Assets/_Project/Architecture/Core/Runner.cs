@@ -13,7 +13,7 @@ public abstract class Runner : IRunnable
         _canEnableAllControllers = canEnableAllControllers;
     }
 
-    protected async void RunAsync()
+    public async void RunAsync()
     {
         foreach (IController controller in _controllers)
         {
