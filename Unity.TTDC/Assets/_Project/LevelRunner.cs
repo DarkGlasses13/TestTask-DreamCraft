@@ -23,15 +23,15 @@ namespace Assets._Project
         {
             _container = Object.FindAnyObjectByType<ProjectMonoRunner>().Container;
             ParentContainerCreator containerCreator = _container.GetDependency<ParentContainerCreator>();
+            CharacterConfig characterConfig = _container.GetDependency<CharacterConfig>();
             _playerInput = _container.GetDependency<PlayerInputController>();
             Transform cameraContainer = containerCreator.Create("[ CAMERAS ]");
             Transform entityContainer = containerCreator.Create("[ ENTITIES ]");
             await new PlayerCameraLoader().LoadAndInstantiateAsync(cameraContainer);
             CinemachineVirtualCamera followingCamera = await new CharacterFollowingCameraLoader().LoadAndInstantiateAsync(cameraContainer);
-            CharacterConfigLoader characterConfigLoader = new();
             CharacterFactory characterFactory = new();
             Character character = await characterFactory.GetCreatedAsync(Vector3.zero + Vector3.up * 1, Quaternion.identity, entityContainer);
-            CharacterMotionController characterMotionController = new(characterConfigLoader, _playerInput, character);
+            CharacterMotionController characterMotionController = new(characterConfig, _playerInput, character);
             followingCamera.Follow = character.transform;
 
             _controllers = new IController[]

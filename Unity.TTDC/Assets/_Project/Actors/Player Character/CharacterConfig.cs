@@ -7,5 +7,6 @@ namespace Assets._Project.Actors.Player_Character
     {
         [field: SerializeField] public float MotionSpeed {  get; private set; }
         [field: SerializeField] public float RotationSpeed { get; private set; }
+        [field: SerializeField] public int WeaponSlotsCount { get; internal set; }
     }
 }

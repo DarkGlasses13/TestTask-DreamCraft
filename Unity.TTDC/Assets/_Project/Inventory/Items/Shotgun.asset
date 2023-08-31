@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3316c976ffcc3064eb2d7cba79334e02, type: 3}
-  m_Name: Character Config
+  m_Script: {fileID: 11500000, guid: 919a4b0dd1e1abd4f819e96537962a91, type: 3}
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
-  <MotionSpeed>k__BackingField: 5
-  <RotationSpeed>k__BackingField: 0.7
-  <WeaponSlotsCount>k__BackingField: 3
+  <ID>k__BackingField: wpn_Sgn
+  <Name>k__BackingField: 
+  <Description>k__BackingField: 
