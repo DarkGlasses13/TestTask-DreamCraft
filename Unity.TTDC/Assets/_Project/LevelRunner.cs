@@ -30,7 +30,7 @@ namespace Assets._Project
             CinemachineVirtualCamera followingCamera = await new CharacterFollowingCameraLoader().LoadAndInstantiateAsync(cameraContainer);
             CharacterConfigLoader characterConfigLoader = new();
             CharacterFactory characterFactory = new();
-            Character character = await characterFactory.GetCreatedAsync(Vector3.zero + Vector3.up * 0.5f, Quaternion.identity, entityContainer);
+            Character character = await characterFactory.GetCreatedAsync(Vector3.zero + Vector3.up * 1, Quaternion.identity, entityContainer);
             CharacterMotionController characterMotionController = new(characterConfigLoader, _playerInput, character);
             followingCamera.Follow = character.transform;
 
