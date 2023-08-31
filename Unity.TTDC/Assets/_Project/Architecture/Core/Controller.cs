@@ -29,7 +29,7 @@ namespace Assets._Project.Architecture.Core
 
         public virtual void Tick() { }
 
-        public virtual void Disable()
+        public void Disable()
         {
             if (Enabled)
             {
