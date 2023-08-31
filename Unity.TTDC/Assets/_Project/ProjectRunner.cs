@@ -1,7 +1,11 @@
 ﻿using Assets._Project.Architecture.DI;
+using Assets._Project.Architecture.Parent_Container_Creation;
+using Assets._Project.Architecture.Scene_Switching;
 using Assets._Project.Input;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets._Project
 {
@@ -11,10 +15,22 @@ namespace Assets._Project
 
         public ProjectRunner(bool canEnableAllControllers) : base(canEnableAllControllers)
         {
+        }
+
+        protected override async Task CreateControllers()
+        {
+            Application.targetFrameRate = 90;
+            PlayerInputController playerInput = new();
+            Bind<ParentContainerCreator>(new());
+            Bind<ISceneSwitcher>(new SceneSwitcher());
+            Bind(playerInput);
+
             _controllers = new IController[]
             {
-                new PlayerInputController(),
+                playerInput,
             };
+
+            await Task.CompletedTask;
         }
 
         public void Bind<T>(T dependency)
@@ -34,7 +50,7 @@ namespace Assets._Project
 
         protected override void OnControllersInitializedAndEnabled()
         {
-
+            GetDependency<ISceneSwitcher>().ChangeAsync("Level");
         }
     }
 }
