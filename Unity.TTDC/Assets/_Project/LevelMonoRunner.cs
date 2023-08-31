@@ -4,7 +4,12 @@
     {
         private void Awake()
         {
-            _runner = new LevelRunner(canEnableAllControllers: false);
+            _runner = new LevelRunner(canEnableAllControllers: true);
+        }
+
+        private void Start()
+        {
+            _runner.RunAsync();
         }
     }
 }
