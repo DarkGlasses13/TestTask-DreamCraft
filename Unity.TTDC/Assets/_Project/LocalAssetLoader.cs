@@ -7,11 +7,11 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Assets._Project
 {
-    public class LocalAssetLoader : AssetLoader
+    public abstract class LocalAssetLoader<T> : AssetLoader<T>
     {
-        public override async Task<T> LoadAndInstantiateAsync<T>(string key, Transform parent)
+        public override async Task<T> LoadAndInstantiateAsync<C>(Transform parent)
         {
-            GameObject instance = await Addressables.InstantiateAsync(key, parent).Task;
+            GameObject instance = await Addressables.InstantiateAsync(Key, parent).Task;
 
             if (instance.TryGetComponent(out T component))
             {
@@ -23,16 +23,16 @@ namespace Assets._Project
                 $"Component of type {typeof(T)} could not be found on {instance.name}");
         }
 
-        public override async Task<T> LoadAsync<T>(string key)
+        public override async Task<T> LoadAsync()
         {
-            T asset = await Addressables.LoadAssetAsync<T>(key).Task;
+            T asset = await Addressables.LoadAssetAsync<T>(Key).Task;
             Asset = asset;
             return asset;
         }
 
-        public override T LoadAndInstantiate<T>(string key, Transform parent)
+        public override T LoadAndInstantiate<C>(Transform parent)
         {
-            AsyncOperationHandle<GameObject> loadingOperation = Addressables.InstantiateAsync(key, parent);
+            AsyncOperationHandle<GameObject> loadingOperation = Addressables.InstantiateAsync(Key, parent);
             loadingOperation.WaitForCompletion();
 
             if (loadingOperation.Result.TryGetComponent(out T component))
@@ -45,9 +45,9 @@ namespace Assets._Project
                 $"Component of type {typeof(T)} could not be found on {loadingOperation.Result.name}");
         }
 
-        public override T Load<T>(string key)
+        public override T Load()
         {
-            AsyncOperationHandle<T> loadingOperation = Addressables.LoadAssetAsync<T>(key);
+            AsyncOperationHandle<T> loadingOperation = Addressables.LoadAssetAsync<T>(Key);
             loadingOperation.WaitForCompletion();
             return loadingOperation.Result;
         }
