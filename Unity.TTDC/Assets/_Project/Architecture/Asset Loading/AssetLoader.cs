@@ -1,28 +1,31 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-public abstract class AssetLoader : IAssetLoader
+namespace Assets._Project.Architecture.Asset_Loading
 {
-    public object Asset { get; protected set; }
-
-    public abstract T Load<T>(string key);
-    public abstract T LoadAndInstantiate<T>(string key, Transform parent) where T : Component;
-    public abstract Task<T> LoadAsync<T>(string key);
-    public abstract Task<T> LoadAndInstantiateAsync<T>(string key, Transform parent) where T : Component;
-
-    public void Unload()
+    public abstract class AssetLoader : IAssetLoader
     {
-        if (Asset != null)
+        public object Asset { get; protected set; }
+
+        public abstract T Load<T>(string key);
+        public abstract T LoadAndInstantiate<T>(string key, Transform parent) where T : Component;
+        public abstract Task<T> LoadAsync<T>(string key);
+        public abstract Task<T> LoadAndInstantiateAsync<T>(string key, Transform parent) where T : Component;
+
+        public void Unload()
         {
-            if (Asset is GameObject asset)
+            if (Asset != null)
             {
-                asset.SetActive(false);
+                if (Asset is GameObject asset)
+                {
+                    asset.SetActive(false);
+                }
+
+                ReleaseAsset();
+                Asset = null;
             }
-
-            ReleaseAsset();
-            Asset = null;
         }
-    }
 
-    protected abstract void ReleaseAsset();
+        protected abstract void ReleaseAsset();
+    }
 }
