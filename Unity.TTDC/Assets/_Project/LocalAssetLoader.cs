@@ -9,7 +9,7 @@ namespace Assets._Project
 {
     public abstract class LocalAssetLoader<T> : AssetLoader<T>
     {
-        public override async Task<T> LoadAndInstantiateAsync<C>(Transform parent)
+        public override async Task<T> LoadAndInstantiateAsync(Transform parent)
         {
             GameObject instance = await Addressables.InstantiateAsync(Key, parent).Task;
 
@@ -30,7 +30,7 @@ namespace Assets._Project
             return asset;
         }
 
-        public override T LoadAndInstantiate<C>(Transform parent)
+        public override T LoadAndInstantiate(Transform parent)
         {
             AsyncOperationHandle<GameObject> loadingOperation = Addressables.InstantiateAsync(Key, parent);
             loadingOperation.WaitForCompletion();

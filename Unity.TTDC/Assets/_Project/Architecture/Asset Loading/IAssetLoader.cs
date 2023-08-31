@@ -8,8 +8,8 @@ namespace Assets._Project.Architecture.Asset_Loading
         string Key { get; }
         object Asset { get; }
         T Load();
-        T LoadAndInstantiate<C>(Transform parent) where C : Component;
-        Task<T> LoadAndInstantiateAsync<C>(Transform parent) where C : Component;
+        T LoadAndInstantiate(Transform parent);
+        Task<T> LoadAndInstantiateAsync(Transform parent);
         Task<T> LoadAsync();
         void Unload();
     }

@@ -9,8 +9,8 @@ namespace Assets._Project.Architecture.Asset_Loading
         public object Asset { get; protected set; }
 
         public abstract T Load();
-        public abstract T LoadAndInstantiate<C>(Transform parent) where C : Component;
-        public abstract Task<T> LoadAndInstantiateAsync<C>(Transform parent) where C : Component;
+        public abstract T LoadAndInstantiate(Transform parent);
+        public abstract Task<T> LoadAndInstantiateAsync(Transform parent);
         public abstract Task<T> LoadAsync();
 
         public void Unload()
