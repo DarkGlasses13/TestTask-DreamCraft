@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Character Config
   m_EditorClassIdentifier: 
   <MotionSpeed>k__BackingField: 5
-  <RotationSpeed>k__BackingField: 5
+  <RotationSpeed>k__BackingField: 0.7

@@ -15,6 +15,6 @@ namespace Assets._Project.Actors.Player_Character
             _mover = new CharacterControllerDrivedMover(Transform, controller);
         }
 
-        public void Move(Vector2 motion, Vector2 rotationDirection) => _mover?.Move(motion, rotationDirection);
+        public void Move(Vector3 motion, Quaternion rotation) => _mover?.Move(motion, rotation);
     }
 }
