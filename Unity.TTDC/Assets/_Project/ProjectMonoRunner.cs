@@ -8,7 +8,7 @@ namespace Assets._Project
 
         private void Awake()
         {
-            ProjectRunner runner = new(canEnableAllControllers: false);
+            ProjectRunner runner = new(canEnableAllControllers: true);
             Container = runner;
             _runner = runner;
             DontDestroyOnLoad(this);

@@ -3,7 +3,7 @@ using Assets._Project.Architecture.DI;
 using Assets._Project.Architecture.Parent_Container_Creation;
 using Assets._Project.Architecture.Scene_Switching;
 using Assets._Project.Input;
-using Assets._Project.Inventory;
+using Assets._Project.Inventory_System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +14,6 @@ namespace Assets._Project
     public class ProjectRunner : Runner, IDIContainer
     {
         private readonly List<object> _container = new();
-        private InventoryController _inventoryController;
 
         public ProjectRunner(bool canEnableAllControllers) : base(canEnableAllControllers)
         {
@@ -24,20 +23,20 @@ namespace Assets._Project
         {
             Application.targetFrameRate = 90;
             CharacterConfig characterConfig = await new CharacterConfigLoader().LoadAsync();
-            IItemDatabase itemDatabase = await new ItemDatabaseLoader().LoadAsync();
+            IItemDatabase itemDatabase = new AddressablesItemDatabase("Item Data");
+            await itemDatabase.LoadItemsAsync();
+            IInventory characterInventory = new Inventory(characterConfig.WeaponSlotsCount, itemDatabase);
             PlayerInputController playerInput = new();
-            _inventoryController = new(characterConfig.WeaponSlotsCount, itemDatabase);
             Bind<ParentContainerCreator>(new());
             Bind<ISceneSwitcher>(new SceneSwitcher());
             Bind(characterConfig);
             Bind(itemDatabase);
             Bind(playerInput);
-            Bind(_inventoryController);
+            Bind(characterInventory);
 
             _controllers = new IController[]
             {
                 playerInput,
-                _inventoryController,
             };
 
             await Task.CompletedTask;
@@ -60,7 +59,6 @@ namespace Assets._Project
 
         protected override void OnControllersInitializedAndEnabled()
         {
-            _inventoryController.TryAdd("wpn_Blt", "wpn_Sgn", "wpn_Lsr");
             GetDependency<ISceneSwitcher>().ChangeAsync("Level");
         }
     }
