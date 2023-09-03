@@ -1,7 +1,6 @@
-﻿using Assets._Project.Motion_Controll;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets._Project.Actors.Player_Character
+namespace Assets._Project.Motion_Control
 {
     internal class CharacterControllerDrivedMover : ICanMove
     {

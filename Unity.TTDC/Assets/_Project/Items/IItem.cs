@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets._Project.Inventory_System
+namespace Assets._Project.Items
 {
     public interface IItem : ICloneable
     {

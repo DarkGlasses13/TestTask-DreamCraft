@@ -2,7 +2,7 @@
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace Assets._Project.Inventory_System
+namespace Assets._Project.Items
 {
     public abstract class Item : IItem
     {

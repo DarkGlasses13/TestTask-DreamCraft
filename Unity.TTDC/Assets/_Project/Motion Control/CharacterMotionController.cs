@@ -1,11 +1,9 @@
 ﻿using Assets._Project.Actors.Player_Character;
 using Assets._Project.Architecture.Core;
 using Assets._Project.Input;
-using System.Linq;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
-namespace Assets._Project.Motion_Controll
+namespace Assets._Project.Motion_Control
 {
     public class CharacterMotionController : Controller
     {

@@ -3,7 +3,7 @@ using Assets._Project.Architecture.DI;
 using Assets._Project.Architecture.Parent_Container_Creation;
 using Assets._Project.Architecture.Scene_Switching;
 using Assets._Project.Input;
-using Assets._Project.Inventory_System;
+using Assets._Project.Items;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

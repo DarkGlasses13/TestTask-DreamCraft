@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Assets._Project.Inventory_System
+namespace Assets._Project.Items
 {
     public abstract class ItemDatabase : IItemDatabase
     {

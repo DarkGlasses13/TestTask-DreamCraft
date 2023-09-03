@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine.AddressableAssets;
 
-namespace Assets._Project.Inventory_System
+namespace Assets._Project.Items
 {
     public class AddressablesItemDatabase : ItemDatabase
     {

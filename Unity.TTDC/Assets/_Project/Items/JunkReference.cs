@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Inventory_System
+namespace Assets._Project.Items
 {
     [CreateAssetMenu(menuName = "Item/Junk")]
     public class JunkReference : ItemReference

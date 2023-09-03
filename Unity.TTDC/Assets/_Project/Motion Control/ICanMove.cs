@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Motion_Controll
+namespace Assets._Project.Motion_Control
 {
     public interface ICanMove
     {

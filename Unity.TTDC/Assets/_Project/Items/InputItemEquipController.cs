@@ -1,7 +1,7 @@
 ﻿using Assets._Project.Architecture.Core;
 using Assets._Project.Input;
 
-namespace Assets._Project.Inventory_System
+namespace Assets._Project.Items
 {
     public class InputItemEquipController : Controller
     {

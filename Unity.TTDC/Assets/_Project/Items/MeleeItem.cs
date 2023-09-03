@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Assets._Project.Inventory_System
+namespace Assets._Project.Items
 {
     [Serializable]
-    public class LasergunItem : GunItem
+    public class MeleeItem : WeaponItem
     {
         protected override IAtackStrategy AttackStrategy => throw new System.NotImplementedException();
     }
