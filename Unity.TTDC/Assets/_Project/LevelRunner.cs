@@ -29,13 +29,13 @@ namespace Assets._Project
             _playerInput = _container.GetDependency<PlayerInputController>();
             Transform cameraContainer = containerCreator.Create("[ CAMERAS ]");
             Transform entityContainer = containerCreator.Create("[ ENTITIES ]");
-            await new PlayerCameraLoader().LoadAndInstantiateAsync(cameraContainer);
+            Camera playerCamera = await new PlayerCameraLoader().LoadAndInstantiateAsync(cameraContainer);
             CinemachineVirtualCamera followingCamera = await new CharacterFollowingCameraLoader().LoadAndInstantiateAsync(cameraContainer);
             CharacterFactory characterFactory = new();
             Character character = await characterFactory.GetCreatedAsync(Vector3.zero + Vector3.up * 1, Quaternion.identity, entityContainer);
             _inventory = _container.GetDependency<Inventory>();
             InputItemEquipController inputItemSwapController = new(new(selected: 0, _inventory, character), _playerInput);
-            CharacterMotionController characterMotionController = new(characterConfig, _playerInput, character);
+            CharacterMotionController characterMotionController = new(characterConfig, _playerInput, playerCamera, character);
             followingCamera.Follow = character.transform;
 
             _controllers = new IController[]

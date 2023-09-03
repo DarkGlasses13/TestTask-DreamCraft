@@ -6,6 +6,7 @@ namespace Assets._Project.Motion_Controll
     {
         Transform Transform { get; }
 
-        void Move(Vector3 motion, Quaternion rotation);
+        void Move(Vector3 motion);
+        void Rotate(Quaternion rotation);
     }
 }

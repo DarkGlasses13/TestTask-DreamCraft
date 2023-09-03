@@ -15,10 +15,8 @@ namespace Assets._Project.Actors.Player_Character
             _controller = controller;
         }
 
-        public void Move(Vector3 motion, Quaternion rotation)
-        {
-            _controller.Move(motion);
-            Transform.rotation = rotation;
-        }
+        public void Move(Vector3 motion) => _controller.Move(motion);
+
+        public void Rotate(Quaternion rotation) => Transform.rotation = rotation;
     }
 }

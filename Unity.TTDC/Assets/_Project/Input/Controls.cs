@@ -39,6 +39,15 @@ namespace Assets._Project.Input
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""5c33f569-deb3-4611-a160-bd9b3526d8ad"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""da21c890-54e1-4049-9fe5-315222b9fd90"",
@@ -189,6 +198,17 @@ namespace Assets._Project.Input
                     ""action"": ""Weapon Swap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2bde7ff4-455f-4dc6-9659-02cf1b781156"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -215,6 +235,7 @@ namespace Assets._Project.Input
             // Character
             m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
             m_Character_Motion = m_Character.FindAction("Motion", throwIfNotFound: true);
+            m_Character_Look = m_Character.FindAction("Look", throwIfNotFound: true);
             m_Character_Attack = m_Character.FindAction("Attack", throwIfNotFound: true);
             m_Character_WeaponSwap = m_Character.FindAction("Weapon Swap", throwIfNotFound: true);
         }
@@ -279,6 +300,7 @@ namespace Assets._Project.Input
         private readonly InputActionMap m_Character;
         private List<ICharacterActions> m_CharacterActionsCallbackInterfaces = new List<ICharacterActions>();
         private readonly InputAction m_Character_Motion;
+        private readonly InputAction m_Character_Look;
         private readonly InputAction m_Character_Attack;
         private readonly InputAction m_Character_WeaponSwap;
         public struct CharacterActions
@@ -286,6 +308,7 @@ namespace Assets._Project.Input
             private @Controls m_Wrapper;
             public CharacterActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Motion => m_Wrapper.m_Character_Motion;
+            public InputAction @Look => m_Wrapper.m_Character_Look;
             public InputAction @Attack => m_Wrapper.m_Character_Attack;
             public InputAction @WeaponSwap => m_Wrapper.m_Character_WeaponSwap;
             public InputActionMap Get() { return m_Wrapper.m_Character; }
@@ -300,6 +323,9 @@ namespace Assets._Project.Input
                 @Motion.started += instance.OnMotion;
                 @Motion.performed += instance.OnMotion;
                 @Motion.canceled += instance.OnMotion;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
@@ -313,6 +339,9 @@ namespace Assets._Project.Input
                 @Motion.started -= instance.OnMotion;
                 @Motion.performed -= instance.OnMotion;
                 @Motion.canceled -= instance.OnMotion;
+                @Look.started -= instance.OnLook;
+                @Look.performed -= instance.OnLook;
+                @Look.canceled -= instance.OnLook;
                 @Attack.started -= instance.OnAttack;
                 @Attack.performed -= instance.OnAttack;
                 @Attack.canceled -= instance.OnAttack;
@@ -348,6 +377,7 @@ namespace Assets._Project.Input
         public interface ICharacterActions
         {
             void OnMotion(InputAction.CallbackContext context);
+            void OnLook(InputAction.CallbackContext context);
             void OnAttack(InputAction.CallbackContext context);
             void OnWeaponSwap(InputAction.CallbackContext context);
         }
