@@ -2,13 +2,15 @@
 
 namespace Assets._Project.Items
 {
-    public class ItemEquiper
+    public class ItemEquiper : IItemEquiper
     {
         private readonly IInventory _inventory;
-        private readonly ICanEquip _equipable;
+        private readonly IHaveEquipment _equipable;
         private int _selected;
 
-        public ItemEquiper(int selected, IInventory inventory, ICanEquip equipable)
+        public IItem Selected { get; private set; }
+
+        public ItemEquiper(int selected, IInventory inventory, IHaveEquipment equipable)
         {
             _inventory = inventory;
             _equipable = equipable;
@@ -22,7 +24,7 @@ namespace Assets._Project.Items
         {
             if (value == 0)
             {
-                _inventory.Get(_selected)?.Equip(_equipable);
+                EquipSelected();
                 return;
             }
 
@@ -40,7 +42,13 @@ namespace Assets._Project.Items
                 return;
 
             _inventory.Get(previousIndex)?.Unequip(_equipable);
-            _inventory.Get(_selected)?.Equip(_equipable);
+            EquipSelected();
+        }
+
+        private void EquipSelected()
+        {
+            Selected = _inventory.Get(_selected);
+            Selected?.Equip(_equipable);
         }
 
         private int GetClamped(int value)

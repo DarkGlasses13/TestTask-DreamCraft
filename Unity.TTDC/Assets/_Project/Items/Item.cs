@@ -7,6 +7,7 @@ namespace Assets._Project.Items
     public abstract class Item : IItem
     {
         protected GameObject _instance;
+        private IItemUseStrategy _useStrategy;
 
         [field: SerializeField] public string ID { get; private set; }
         [field: SerializeField] public string Name { get; private set; }
@@ -31,14 +32,17 @@ namespace Assets._Project.Items
 
         protected virtual void OnInstanceLoaded()
         {
+            _useStrategy ??= CreateUseStrategy();
             _instance
                 .AddComponent<ItemInstance>()
                 .Construct(ID);
         }
 
-        public void Drop(ICanEquip equipable) { }
+        protected abstract IItemUseStrategy CreateUseStrategy();
 
-        public void Equip(ICanEquip equipable)
+        public void Drop(IHaveEquipment equipable) { }
+
+        public void Equip(IHaveEquipment equipable)
         {
             if (equipable == null)
                 return;
@@ -50,9 +54,9 @@ namespace Assets._Project.Items
             OnEquip(equipable);
         }
 
-        protected virtual void OnEquip(ICanEquip equipable) { }
+        protected virtual void OnEquip(IHaveEquipment equipable) { }
 
-        public void Unequip(ICanEquip equipable) 
+        public void Unequip(IHaveEquipment equipable) 
         {
             if (equipable == null)
                 return;
@@ -64,9 +68,15 @@ namespace Assets._Project.Items
             OnUnequip(equipable);
         }
 
-        protected virtual void OnUnequip(ICanEquip equipable) { }
+        protected virtual void OnUnequip(IHaveEquipment equipable) { }
 
-        public virtual void Use(ICanUseItem user) { }
+        public virtual void StartUse(ICanUseItem user) => _useStrategy?.Start(user);
+
+        public virtual void Use(ICanUseItem user) => _useStrategy?.Update(user);
+
+        public virtual void FixedUse(ICanUseItem user) => _useStrategy?.FixedUpdate(user);
+
+        public virtual void StopUse(ICanUseItem user) => _useStrategy?.Stop(user);
 
         public void UnloadInstance()
         {

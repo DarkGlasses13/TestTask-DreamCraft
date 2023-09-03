@@ -4,7 +4,9 @@ using Assets._Project.Architecture.DI;
 using Assets._Project.Architecture.Parent_Container_Creation;
 using Assets._Project.Input;
 using Assets._Project.Items;
+using Assets._Project.Items.Equip_Control;
 using Assets._Project.Motion_Control;
+using Assets._Project.Use_Control;
 using Cinemachine;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -34,20 +36,22 @@ namespace Assets._Project
             CharacterFactory characterFactory = new();
             Character character = await characterFactory.GetCreatedAsync(Vector3.zero + Vector3.up * 1, Quaternion.identity, entityContainer);
             _inventory = _container.GetDependency<Inventory>();
-            InputItemEquipController inputItemSwapController = new(new(selected: 0, _inventory, character), _playerInput);
             CharacterMotionController characterMotionController = new(characterConfig, _playerInput, playerCamera, character);
+            CharacterItemEquipController characterItemEquipController = new(new(selected: 0, _inventory, character), _playerInput);
+            CharacterItemUseController characterItemUseController = new(_playerInput, characterItemEquipController, character);
             followingCamera.Follow = character.transform;
 
             _controllers = new IController[]
             {
                 characterMotionController,
-                inputItemSwapController,
+                characterItemEquipController,
+                characterItemUseController,
             };
         }
 
         protected override void OnControllersInitializedAndEnabled()
         {
-            _inventory.TryAdd("wpn_Ptl", "wpn_Lsr", "wpn_Sgn", "wpn_Knf");
+            _inventory.TryAdd("wpn_Ptl", "wpn_Sgn", "wpn_Knf");
             _playerInput.Enable();
         }
     }

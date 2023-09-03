@@ -2,7 +2,7 @@
 
 namespace Assets._Project.Items
 {
-    public interface ICanEquip
+    public interface IHaveEquipment
     {
         public Transform Hand { get; }
     }

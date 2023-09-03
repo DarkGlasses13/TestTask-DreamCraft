@@ -6,25 +6,18 @@ namespace Assets._Project.Items
     {
         [field: SerializeField] public int Damage { get; private set; }
         [field: SerializeField] public float Distance { get; private set; }
-        protected abstract IAtackStrategy AttackStrategy { get; }
 
-        protected override void OnEquip(ICanEquip equipable)
+        protected override void OnEquip(IHaveEquipment equipable)
         {
             base.OnEquip(equipable);
             GetInstance(equipable.Hand.position, equipable.Hand.rotation, equipable.Hand);
         }
 
-        protected override void OnUnequip(ICanEquip equipable)
+        protected override void OnUnequip(IHaveEquipment equipable)
         {
             base.OnUnequip(equipable);
             UnloadInstance();
 
-        }
-
-        public override void Use(ICanUseItem user)
-        {
-            base.Use(user);
-            AttackStrategy?.Attack(user);
         }
     }
 }

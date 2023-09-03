@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets._Project.Actors.Player_Character
 {
-    public class Character : MonoBehaviour, ICanMove, ICanEquip
+    public class Character : MonoBehaviour, ICanMove, IHaveEquipment, ICanUseItem
     {
         private ICanMove _mover;
 

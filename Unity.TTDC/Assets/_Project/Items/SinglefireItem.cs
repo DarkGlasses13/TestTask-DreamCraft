@@ -5,6 +5,6 @@ namespace Assets._Project.Items
     [Serializable]
     public class SinglefireItem : GunItem
     {
-        protected override IAtackStrategy AttackStrategy => throw new System.NotImplementedException();
+        protected override IItemUseStrategy CreateUseStrategy() => new SinglefireAttackStrategy(this);
     }
 }
