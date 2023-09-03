@@ -6,15 +6,22 @@ namespace Assets._Project.Inventory_System
 {
     public abstract class Item : IItem
     {
-        private 
         protected GameObject _instance;
+
         [field: SerializeField] public string ID { get; private set; }
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField, TextArea] public string Description { get; private set; }
         [field: SerializeField] public Sprite Icon { get; private set; }
+        public bool IsEquiped { get; private set; }
 
         public GameObject GetInstance(Vector3 position, Quaternion rotation, Transform parent)
         {
+            //if (_instance != null)
+            //    UnloadInstance();
+
+            if (_instance != null)
+                return _instance;
+
             AsyncOperationHandle<GameObject> loading = Addressables.InstantiateAsync(ID, position, rotation, parent);
             loading.WaitForCompletion();
             _instance = loading.Result;
@@ -29,10 +36,37 @@ namespace Assets._Project.Inventory_System
                 .Construct(ID);
         }
 
-        public virtual void Drop(ICanEquip equipable) {}
-        public virtual void Equip(ICanEquip equipable) {}
-        public virtual void Unequip(ICanEquip equipable) {}
-        public virtual void Use(ICanUseItem user) {}
+        public void Drop(ICanEquip equipable) { }
+
+        public void Equip(ICanEquip equipable)
+        {
+            if (equipable == null)
+                return;
+
+            if (IsEquiped)
+                return;
+
+            IsEquiped = true;
+            OnEquip(equipable);
+        }
+
+        protected virtual void OnEquip(ICanEquip equipable) { }
+
+        public void Unequip(ICanEquip equipable) 
+        {
+            if (equipable == null)
+                return;
+
+            if (IsEquiped == false)
+                return;
+
+            IsEquiped = false;
+            OnUnequip(equipable);
+        }
+
+        protected virtual void OnUnequip(ICanEquip equipable) { }
+
+        public virtual void Use(ICanUseItem user) { }
 
         public void UnloadInstance()
         {

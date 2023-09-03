@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets._Project.Inventory_System
@@ -10,6 +9,7 @@ namespace Assets._Project.Inventory_System
         string Name { get; }
         string Description { get; }
         Sprite Icon { get; }
+        bool IsEquiped { get; }
 
         void Equip(ICanEquip equipable);
         void Unequip(ICanEquip equipable);

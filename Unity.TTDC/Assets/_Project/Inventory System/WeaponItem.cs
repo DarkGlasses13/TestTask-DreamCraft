@@ -8,19 +8,17 @@ namespace Assets._Project.Inventory_System
         [field: SerializeField] public float Distance { get; private set; }
         protected abstract IAtackStrategy AttackStrategy { get; }
 
-        public override void Equip(ICanEquip equipable)
+        protected override void OnEquip(ICanEquip equipable)
         {
-            if (equipable == null)
-                return;
-
-            base.Equip(equipable);
+            base.OnEquip(equipable);
             GetInstance(equipable.Hand.position, equipable.Hand.rotation, equipable.Hand);
         }
 
-        public override void Unequip(ICanEquip equipable)
+        protected override void OnUnequip(ICanEquip equipable)
         {
-            base.Unequip(equipable);
+            base.OnUnequip(equipable);
             UnloadInstance();
+
         }
 
         public override void Use(ICanUseItem user)
