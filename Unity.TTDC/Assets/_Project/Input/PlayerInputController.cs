@@ -9,7 +9,7 @@ namespace Assets._Project.Input
     {
         public event Action<Vector2> OnMotion;
         public event Action OnAttack;
-        public event Action<float> OnWeaponSwap;
+        public event Action<float> OnItemSwap;
 
         private Controls _inputActions;
 
@@ -37,7 +37,7 @@ namespace Assets._Project.Input
 
         private void SwapWeapon(InputAction.CallbackContext context)
         {
-            OnWeaponSwap?.Invoke(context.ReadValue<float>());
+            OnItemSwap?.Invoke(context.ReadValue<float>());
         }
 
         protected override void OnDisable()

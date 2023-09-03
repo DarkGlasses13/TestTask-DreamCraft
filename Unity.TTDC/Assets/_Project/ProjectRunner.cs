@@ -1,7 +1,9 @@
-﻿using Assets._Project.Architecture.DI;
+﻿using Assets._Project.Actors.Player_Character;
+using Assets._Project.Architecture.DI;
 using Assets._Project.Architecture.Parent_Container_Creation;
 using Assets._Project.Architecture.Scene_Switching;
 using Assets._Project.Input;
+using Assets._Project.Inventory_System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,10 +22,17 @@ namespace Assets._Project
         protected override async Task CreateControllers()
         {
             Application.targetFrameRate = 90;
+            CharacterConfig characterConfig = await new CharacterConfigLoader().LoadAsync();
+            IItemDatabase itemDatabase = new AddressablesItemDatabase("Item Data");
+            await itemDatabase.LoadItemsAsync();
+            IInventory characterInventory = new Inventory(characterConfig.WeaponSlotsCount, itemDatabase);
             PlayerInputController playerInput = new();
             Bind<ParentContainerCreator>(new());
             Bind<ISceneSwitcher>(new SceneSwitcher());
+            Bind(characterConfig);
+            Bind(itemDatabase);
             Bind(playerInput);
+            Bind(characterInventory);
 
             _controllers = new IController[]
             {

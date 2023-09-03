@@ -7,7 +7,7 @@ namespace Assets._Project.Input
     {
         event Action<Vector2> OnMotion;
         event Action OnAttack;
-        event Action<float> OnWeaponSwap;
+        event Action<float> OnItemSwap;
 
         Vector2 MotionInput { get; }
     }
