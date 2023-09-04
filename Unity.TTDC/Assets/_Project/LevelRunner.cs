@@ -2,6 +2,7 @@
 using Assets._Project.Actors.Player_Character;
 using Assets._Project.Architecture.DI;
 using Assets._Project.Architecture.Parent_Container_Creation;
+using Assets._Project.Camera_Control;
 using Assets._Project.Input;
 using Assets._Project.Items;
 using Assets._Project.Items.Equip_Control;

@@ -1,6 +1,6 @@
 ﻿using Cinemachine;
 
-namespace Assets._Project.Actors.Player_Character
+namespace Assets._Project.Camera_Control
 {
     public class CharacterFollowingCameraLoader : LocalAssetLoader<CinemachineVirtualCamera>
     {

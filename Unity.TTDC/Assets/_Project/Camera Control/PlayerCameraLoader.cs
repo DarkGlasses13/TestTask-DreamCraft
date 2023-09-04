@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Actors
+namespace Assets._Project.Camera_Control
 {
     public class PlayerCameraLoader : LocalAssetLoader<Camera>
     {
