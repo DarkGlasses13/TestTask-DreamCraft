@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Assets._Project.Items.Use_Control;
+using Assets._Project.Projectiles;
 using UnityEngine;
 
 namespace Assets._Project.Items
 {
-    public interface IItem : ICloneable
+    public interface IItem
     {
         string ID { get; }
         string Name { get; }
@@ -17,8 +18,6 @@ namespace Assets._Project.Items
         void Use(ICanUseItem user);
         GameObject GetInstance(Vector3 position, Quaternion rotation, Transform parent);
         void UnloadInstance();
-        void StartUse(ICanUseItem user);
-        void FixedUse(ICanUseItem user);
-        void StopUse(ICanUseItem user);
+        IItem ConstructAndClone(IItemDatabase database, ProjectileController projectileDealer);
     }
 }

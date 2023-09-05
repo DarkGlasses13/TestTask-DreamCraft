@@ -1,22 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Assets._Project.Items
 {
-    public abstract class ItemDatabase : IItemDatabase
+    public class ItemDatabase : IItemDatabase
     {
-        protected ItemReference[] _references;
-        protected readonly List<IItem> _items = new();
+        private readonly ItemFactory _factory;
+        private readonly ItemReference[] _references;
+        private readonly List<IItem> _items = new();
 
-        public abstract Task LoadItemsAsync();
+        public ItemDatabase(ItemFactory factory, ItemReference[] references)
+        {
+            _factory = factory;
+            _references = references;
+        }
 
         public IItem GetByID(string id)
         {
-            IItem item = (IItem)_references
-                .SingleOrDefault(reference => reference.Item.ID == id).Item
-                .Clone();
+            ItemReference reference = _references
+                .SingleOrDefault(reference => reference.Item.ID == id);
 
+            IItem item = _factory.Create(this, reference);
             _items.Add(item);
             return item;
         }
@@ -32,5 +36,7 @@ namespace Assets._Project.Items
 
             return items;
         }
+
+        public void OnInstanceUnloaded(IItem item) => _items.Remove(item);
     }
 }

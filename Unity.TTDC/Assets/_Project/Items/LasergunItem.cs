@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Assets._Project.Items.Use_Control;
+using System;
+using UnityEngine;
 
 namespace Assets._Project.Items
 {
     [Serializable]
     public class LasergunItem : GunItem
     {
-        protected override IItemUseStrategy CreateUseStrategy()
+        public override void Use(ICanUseItem user)
         {
-            throw new NotImplementedException();
+            Debug.Log("Laser attack");
         }
     }
 }

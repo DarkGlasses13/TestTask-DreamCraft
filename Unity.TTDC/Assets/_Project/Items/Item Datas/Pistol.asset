@@ -22,3 +22,4 @@ MonoBehaviour:
     <Spreed>k__BackingField: 0
     <Capacity>k__BackingField: 0
     <ReloadingSpeed>k__BackingField: 0
+    <ProjectileKey>k__BackingField: Bullet

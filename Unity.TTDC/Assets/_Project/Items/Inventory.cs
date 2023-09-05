@@ -8,12 +8,10 @@ namespace Assets._Project.Items
         public event Action OnChanged;
 
         private readonly IItem[] _items;
-        private readonly IItemDatabase _database;
 
-        public Inventory(int capacity, IItemDatabase database)
+        public Inventory(int capacity)
         {
             _items = new IItem[capacity];
-            _database = database;
         }
 
         public int Capacity => _items.Length;
@@ -37,8 +35,6 @@ namespace Assets._Project.Items
             return false;
         }
 
-        public bool TryAdd(string id) => TryAdd(_database.GetByID(id));
-
         public bool TryAdd(params IItem[] items)
         {
             if (EmptySlotsCount >= items.Length)
@@ -54,8 +50,6 @@ namespace Assets._Project.Items
             return false;
         }
 
-        public bool TryAdd(params string[] ids) => TryAdd(_database.GetByIDs(ids));
-
         public bool TryRemove(IItem item)
         {
             IItem itemToRemove = _items.SingleOrDefault(slot => slot == item);
@@ -70,8 +64,6 @@ namespace Assets._Project.Items
 
             return false;
         }
-
-        public bool TryRemove(string id) => TryRemove(_database.GetByID(id));
 
         private int GetEmptySlot()
         {

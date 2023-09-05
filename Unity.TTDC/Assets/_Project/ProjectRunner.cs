@@ -23,14 +23,11 @@ namespace Assets._Project
         {
             Application.targetFrameRate = 90;
             CharacterConfig characterConfig = await new CharacterConfigLoader().LoadAsync();
-            IItemDatabase itemDatabase = new AddressablesItemDatabase("Item Data");
-            await itemDatabase.LoadItemsAsync();
-            IInventory characterInventory = new Inventory(characterConfig.WeaponSlotsCount, itemDatabase);
+            IInventory characterInventory = new Inventory(characterConfig.WeaponSlotsCount);
             PlayerInputController playerInput = new();
             Bind<ParentContainerCreator>(new());
             Bind<ISceneSwitcher>(new SceneSwitcher());
             Bind(characterConfig);
-            Bind(itemDatabase);
             Bind(playerInput);
             Bind(characterInventory);
 

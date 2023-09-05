@@ -17,7 +17,6 @@ namespace Assets._Project.Items
         {
             base.OnUnequip(equipable);
             UnloadInstance();
-
         }
     }
 }

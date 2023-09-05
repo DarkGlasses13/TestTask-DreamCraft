@@ -1,8 +1,7 @@
 ﻿using Assets._Project.Architecture.Core;
 using Assets._Project.Input;
-using Assets._Project.Items;
 
-namespace Assets._Project.Use_Control
+namespace Assets._Project.Items.Use_Control
 {
     public class CharacterItemUseController : Controller
     {
@@ -20,39 +19,38 @@ namespace Assets._Project.Use_Control
 
         protected override void OnEnable()
         {
-            _playerInput.OnStartLooking += StartAttack;
-            _playerInput.OnLookEnded += StopAttack;
+            _playerInput.OnStartLooking += StartUse;
+            _playerInput.OnLookEnded += StopUse;
         }
 
-        private void StartAttack()
+        private void StartUse()
         {
             _isUsing = true;
-            _equip?.Selected?.StartUse(_user);
         }
 
-        public override void Tick()
-        {
-            if (_isUsing)
-                _equip?.Selected?.Use(_user);
+        //public override void Tick()
+        //{
+        //    if (_isUsing)
+        //        _equip?.Selected?.Use(_user);
 
-        }
+        //}
 
-        public override void FixedTick()
-        {
-            if (_isUsing)
-                _equip?.Selected?.FixedUse(_user);
-        }
+        //public override void FixedTick()
+        //{
+        //    if (_isUsing)
+        //        _equip?.Selected?.FixedUse(_user);
+        //}
 
-        private void StopAttack()
+        private void StopUse()
         {
             _isUsing = false;
-            _equip?.Selected?.StopUse(_user);
+            _equip?.Selected?.Use(_user);
         }
 
         protected override void OnDisable()
         {
-            _playerInput.OnStartLooking -= StartAttack;
-            _playerInput.OnLookEnded -= StopAttack;
+            _playerInput.OnStartLooking -= StartUse;
+            _playerInput.OnLookEnded -= StopUse;
         }
     }
 }

@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Assets._Project.Items.Use_Control;
+using System;
+using UnityEngine;
 
 namespace Assets._Project.Items
 {
     [Serializable]
     public class MeleeItem : WeaponItem
     {
-        protected override IItemUseStrategy CreateUseStrategy() => new MeleeAttackStrategy(this);
+        public override void Use(ICanUseItem user)
+        {
+            Debug.Log("Melee attack");
+        }
     }
 }

@@ -12,9 +12,7 @@ namespace Assets._Project.Items
 
         bool TryAdd(params IItem[] items);
         bool TryRemove(IItem item);
-        bool TryAdd(string id);
-        bool TryAdd(params string[] ids);
-        bool TryRemove(string id);
+        bool TryAdd(IItem item);
         IItem Get(int selected);
     }
 }
