@@ -1,4 +1,5 @@
 ﻿using Assets._Project.Actors;
+using Assets._Project.Actors.Enemies;
 using Assets._Project.Actors.Player_Character;
 using Assets._Project.Architecture.DI;
 using Assets._Project.Architecture.Parent_Container_Creation;
@@ -50,6 +51,10 @@ namespace Assets._Project
             CharacterItemEquipController characterItemEquipController = new(new(selected: 0, _inventory, character), _playerInput);
             CharacterItemUseController characterItemUseController = new(_playerInput, characterItemEquipController, character);
             followingCamera.Follow = character.transform;
+            EnemySpawnConfig enemySpawnConfig = await Addressables.LoadAssetAsync<EnemySpawnConfig>("Enemy Spawn Config").Task;
+            EnemyFactory enemyFactory = new(entityContainer);
+            EnemySpawnController enemySpawnController = new(enemySpawnConfig, enemyFactory, playerCamera.transform);
+            EnemyController enemyController = new(character.transform);
 
             _controllers = new IController[]
             {
@@ -57,6 +62,8 @@ namespace Assets._Project
                 characterItemEquipController,
                 projectileController,
                 characterItemUseController,
+                enemyController,
+                enemySpawnController,
             };
         }
 

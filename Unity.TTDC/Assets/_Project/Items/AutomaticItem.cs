@@ -8,13 +8,11 @@ namespace Assets._Project.Items
     public class AutomaticItem : GunItem
     {
         [field: SerializeField] public float FireRate { get; private set; }
-        protected float _timeBetweenShots;
         protected float _time;
 
         protected override void OnInstanceLoaded(GameObject instance)
         {
             base.OnInstanceLoaded(instance);
-            _timeBetweenShots = 1 / FireRate;
         }
 
         public override void Use(ICanUseItem user)
@@ -28,7 +26,7 @@ namespace Assets._Project.Items
 
             _time += Time.deltaTime;
 
-            if (_time >= _timeBetweenShots)
+            if (_time >= 1 / FireRate)
                 _time = 0;
         }
     }

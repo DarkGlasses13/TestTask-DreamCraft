@@ -21,6 +21,10 @@ MonoBehaviour:
     m_Address: Character Config
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: d70769b5519ecb64fa652f9e8965e531
+    m_Address: Enemy Spawn Config
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bd8902980be272543bb08355fde5aba5, type: 2}
   m_SchemaSet:
