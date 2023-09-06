@@ -17,12 +17,17 @@ namespace Assets._Project.Projectiles
             _trail = GetComponent<TrailRenderer>();
         }
 
+        private void OnEnable()
+        {
+            _trail.emitting = true;
+        }
+
         public void Construct(string id)
         {
             ID = id;
         }
 
-        private void Update() 
+        public virtual void Move() 
         {
             transform.Translate(_speed * Time.deltaTime * Vector3.forward);
         }
@@ -31,6 +36,11 @@ namespace Assets._Project.Projectiles
         {
             gameObject.SetActive(false);
             OnHit?.Invoke(this);
+        }
+
+        private void OnDisable()
+        {
+            _trail.emitting = false;
         }
     }
 }

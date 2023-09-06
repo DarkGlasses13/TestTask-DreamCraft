@@ -12,13 +12,21 @@ namespace Assets._Project.Projectiles
         private string _key;
         private List<Projectile> _projectiles = new();
 
-        public Projectile Create(string key, Transform muzzle)
+        public Projectile Create(string key, Vector3 position, Quaternion rotation)
         {
             _key = key;
             Projectile projectile = Get(key);
-            projectile.gameObject.SetActive(true);
-            projectile.transform.SetPositionAndRotation(muzzle.position, muzzle.rotation);
+            projectile.transform.SetPositionAndRotation(position, rotation);
             return projectile;
+        }
+
+        public override void Tick()
+        {
+            for (int i = 0; i < _projectiles.Count; i++)
+            {
+                if (_projectiles[i].gameObject.activeSelf)
+                    _projectiles[i].Move();
+            }
         }
 
         private Projectile Get(string key)
@@ -38,6 +46,7 @@ namespace Assets._Project.Projectiles
             else
                 projectile.gameObject.SetActive(true);
 
+            _projectiles.Add(projectile);
             return projectile;
         }
     }
