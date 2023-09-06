@@ -33,6 +33,7 @@ namespace Assets._Project.Projectiles
                 instantiate.WaitForCompletion();
                 projectile = instantiate.Result.GetComponent<Projectile>();
                 projectile.Construct(_key);
+                _projectiles.Add(projectile);
             }
             else
             {
@@ -40,7 +41,6 @@ namespace Assets._Project.Projectiles
                 projectile.gameObject.SetActive(true);
             }
 
-            _projectiles.Add(projectile);
             return projectile;
         }
     }

@@ -1,6 +1,11 @@
 ﻿using Assets._Project.Architecture.Core;
+using Assets._Project.Projectiles;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.InputSystem;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Assets._Project.Actors.Enemies
 {
@@ -8,15 +13,31 @@ namespace Assets._Project.Actors.Enemies
     {
         private readonly List<Enemy> _enemies = new();
         private readonly Transform _target;
+        private readonly EnemyFactory _factory;
 
-        public EnemyController(Transform target)
+        public EnemyController(Transform target, EnemyFactory factory)
         {
             _target = target;
+            _factory = factory;
         }
 
-        public Enemy Spawn(Vector3 position)
+        public Enemy Spawn(string key, Vector3 position)
         {
-            return null;
+            Enemy enemy = _enemies.FirstOrDefault(enemy
+                => enemy.ID == key
+                && enemy.gameObject.activeSelf == false);
+
+            if (enemy == null)
+            {
+                enemy = _factory.Create(key, position);
+                _enemies.Add(enemy);
+            }
+            else
+            {
+                enemy.gameObject.SetActive(true);
+            }
+
+            return enemy;
         }
 
         public override void Tick()
@@ -25,15 +46,18 @@ namespace Assets._Project.Actors.Enemies
             {
                 if (enemy.gameObject.activeSelf)
                 {
-                    enemy.Move(_target.position);
 
                     if (enemy.IsReachedTarget)
                     {
-
+                        
                     }
-
+                    else
+                    {
+                        enemy.Follow(_target.position);
+                    }
                 }
             }
         }
     }
+
 }

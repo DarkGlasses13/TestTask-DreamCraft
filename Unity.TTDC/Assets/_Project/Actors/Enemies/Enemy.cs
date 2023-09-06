@@ -12,6 +12,13 @@ namespace Assets._Project.Actors.Enemies
 
         public bool IsReachedTarget => _navigationAgent.isStopped;
 
+        public string ID { get; private set; }
+
+        public void Construct(string id)
+        {
+            ID = id;
+        }
+
         private void Awake()
         {
             _navigationAgent = GetComponent<NavMeshAgent>();
