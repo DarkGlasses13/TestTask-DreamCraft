@@ -53,8 +53,8 @@ namespace Assets._Project
             followingCamera.Follow = character.transform;
             EnemySpawnConfig enemySpawnConfig = await Addressables.LoadAssetAsync<EnemySpawnConfig>("Enemy Spawn Config").Task;
             EnemyFactory enemyFactory = new(entityContainer);
-            EnemySpawnController enemySpawnController = new(enemySpawnConfig, enemyFactory, playerCamera.transform);
-            EnemyController enemyController = new(character.transform);
+            EnemyController enemyController = new(character.transform, enemyFactory);
+            EnemySpawnController enemySpawnController = new(enemyController, enemySpawnConfig, playerCamera.transform);
 
             _controllers = new IController[]
             {

@@ -13,11 +13,13 @@ namespace Assets._Project.Actors.Enemies
             _container = container;
         }
 
-        public Enemy Create(Vector3 position)
+        public Enemy Create(string key, Vector3 position)
         {
-            AsyncOperationHandle<GameObject> instantiate = Addressables.InstantiateAsync("Simple Enemy", position, Quaternion.identity);
+            AsyncOperationHandle<GameObject> instantiate = Addressables.InstantiateAsync(key, position, Quaternion.identity, _container);
             instantiate.WaitForCompletion();
-            return instantiate.Result.GetComponent<Enemy>();
+            Enemy enemy = instantiate.Result.GetComponent<Enemy>();
+            enemy.Construct(key);
+            return enemy;
         }
     }
 }
