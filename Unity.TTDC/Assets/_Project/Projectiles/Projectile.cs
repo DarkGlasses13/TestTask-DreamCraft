@@ -12,6 +12,7 @@ namespace Assets._Project.Projectiles
         [SerializeField] private float _speed;
         [SerializeField] private float _lifetime;
         private GunItem _gun;
+        private float _time;
 
         public TrailRenderer Trail { get; private set; }
         public string ID => _gun.ProjectileKey;
@@ -25,7 +26,7 @@ namespace Assets._Project.Projectiles
 
         private void OnEnable()
         {
-            Invoke(nameof(OnLifetimeEnded), _lifetime);
+            _time = 0;
         }
 
         private void OnLifetimeEnded() => gameObject.SetActive(false);
@@ -37,7 +38,11 @@ namespace Assets._Project.Projectiles
 
         private void Update()
         {
+            if (_time >= _lifetime)
+                OnLifetimeEnded();
+
             transform.Translate(_speed * Time.deltaTime * Vector3.forward);
+            _time += Time.deltaTime;
         }
 
         private void OnTriggerEnter(Collider other)
