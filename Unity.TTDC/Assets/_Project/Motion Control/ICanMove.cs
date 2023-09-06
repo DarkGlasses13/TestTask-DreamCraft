@@ -5,10 +5,10 @@ namespace Assets._Project.Motion_Control
     public interface ICanMove
     {
         Transform Transform { get; }
-        bool IsReachedTarget { get; }
+        float RemainingDistance { get; }
 
         void Move(Vector3 motion);
         void Rotate(Quaternion rotation);
-        void Follow(Vector3 target);
+        void MoveTo(Vector3 target);
     }
 }

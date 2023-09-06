@@ -7,8 +7,7 @@ namespace Assets._Project.Motion_Control
         private readonly CharacterController _controller;
 
         public Transform Transform { get; private set; }
-
-        public bool IsReachedTarget => throw new System.NotImplementedException();
+        public float RemainingDistance => throw new System.NotImplementedException();
 
         public CharacterControllerDrivedMover(Transform transform, CharacterController controller)
         {
@@ -20,7 +19,7 @@ namespace Assets._Project.Motion_Control
 
         public void Rotate(Quaternion rotation) => Transform.rotation = rotation;
 
-        public void Follow(Vector3 target)
+        public void MoveTo(Vector3 target)
         {
             throw new System.NotImplementedException();
         }

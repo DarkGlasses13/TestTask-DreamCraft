@@ -20,7 +20,7 @@ namespace Assets._Project.Items
             if (_time == 0)
             {
                 _projectileController
-                    .Create(ProjectileKey, _gunInstance.Muzzle.transform.position, _gunInstance.Muzzle.transform.rotation);
+                    .Create(this, _gunInstance.Muzzle.transform.position, _gunInstance.Muzzle.transform.rotation);
 
             }
 

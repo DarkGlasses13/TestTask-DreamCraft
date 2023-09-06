@@ -1,11 +1,7 @@
 ﻿using Assets._Project.Architecture.Core;
-using Assets._Project.Projectiles;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.InputSystem;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Assets._Project.Actors.Enemies
 {
@@ -37,6 +33,7 @@ namespace Assets._Project.Actors.Enemies
                 enemy.gameObject.SetActive(true);
             }
 
+            enemy.transform.position = position;
             return enemy;
         }
 
@@ -46,15 +43,7 @@ namespace Assets._Project.Actors.Enemies
             {
                 if (enemy.gameObject.activeSelf)
                 {
-
-                    if (enemy.IsReachedTarget)
-                    {
-                        
-                    }
-                    else
-                    {
-                        enemy.Follow(_target.position);
-                    }
+                    enemy.MoveTo(_target.position);
                 }
             }
         }

@@ -1,25 +1,30 @@
-﻿using System;
+﻿using Assets._Project.Health_Control;
+using Assets._Project.Items;
+using System;
 using UnityEngine;
 
 namespace Assets._Project.Projectiles
 {
     public class Projectile : MonoBehaviour
     {
-        public event Action<Projectile> OnHit;
+        public event Action<Projectile, IHaveHealth> OnHit;
 
         [SerializeField] private float _speed;
-        public TrailRenderer Trail { get; private set; }
+        private GunItem _gun;
 
-        public string ID { get; private set; }
+        public TrailRenderer Trail { get; private set; }
+        public string ID => _gun.ID;
+        public int Damage => _gun.Damage;
+
 
         private void Awake()
         {
             Trail = GetComponent<TrailRenderer>();
         }
 
-        public void Construct(string id)
+        public void Construct(GunItem gun)
         {
-            ID = id;
+            _gun = gun;
         }
 
         private void Update()
@@ -30,7 +35,8 @@ namespace Assets._Project.Projectiles
         private void OnTriggerEnter(Collider other)
         {
             gameObject.SetActive(false);
-            OnHit?.Invoke(this);
+            OnHit?.Invoke(this, other.GetComponent<IHaveHealth>());
+            //OnHit?.Invoke(this, other.GetComponent<IHitBox>());
         }
     }
 }
