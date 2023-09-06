@@ -1,10 +1,11 @@
-﻿using Assets._Project.Inventory_System;
-using Assets._Project.Motion_Controll;
+﻿using Assets._Project.Items;
+using Assets._Project.Items.Use_Control;
+using Assets._Project.Motion_Control;
 using UnityEngine;
 
 namespace Assets._Project.Actors.Player_Character
 {
-    public class Character : MonoBehaviour, ICanMove, ICanEquip
+    public class Character : MonoBehaviour, ICanMove, IHaveEquipment, ICanUseItem
     {
         private ICanMove _mover;
 

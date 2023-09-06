@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3316c976ffcc3064eb2d7cba79334e02, type: 3}
-  m_Name: Character Config
+  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
+  m_Name: Projectiles_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  <MotionSpeed>k__BackingField: 5
-  <WalkRotationSpeed>k__BackingField: 0.5
-  <LookRotationSpeed>k__BackingField: 1
-  <WeaponSlotsCount>k__BackingField: 3
+  m_Group: {fileID: 11400000, guid: 0ac5e3be177205043b6dd79d32f94524, type: 2}
+  m_StaticContent: 0

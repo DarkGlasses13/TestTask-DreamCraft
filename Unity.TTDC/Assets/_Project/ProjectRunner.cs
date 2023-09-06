@@ -3,7 +3,7 @@ using Assets._Project.Architecture.DI;
 using Assets._Project.Architecture.Parent_Container_Creation;
 using Assets._Project.Architecture.Scene_Switching;
 using Assets._Project.Input;
-using Assets._Project.Inventory_System;
+using Assets._Project.Items;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,14 +23,11 @@ namespace Assets._Project
         {
             Application.targetFrameRate = 90;
             CharacterConfig characterConfig = await new CharacterConfigLoader().LoadAsync();
-            IItemDatabase itemDatabase = new AddressablesItemDatabase("Item Data");
-            await itemDatabase.LoadItemsAsync();
-            IInventory characterInventory = new Inventory(characterConfig.WeaponSlotsCount, itemDatabase);
+            IInventory characterInventory = new Inventory(characterConfig.WeaponSlotsCount);
             PlayerInputController playerInput = new();
             Bind<ParentContainerCreator>(new());
             Bind<ISceneSwitcher>(new SceneSwitcher());
             Bind(characterConfig);
-            Bind(itemDatabase);
             Bind(playerInput);
             Bind(characterInventory);
 
