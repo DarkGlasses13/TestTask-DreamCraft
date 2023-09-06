@@ -21,7 +21,7 @@ namespace Assets._Project.Actors.Enemies
         {
             Enemy enemy = _enemies.FirstOrDefault(enemy
                 => enemy.ID == key
-                && enemy.gameObject.activeSelf == false);
+                && enemy.isActiveAndEnabled == false);
 
             if (enemy == null)
             {
@@ -41,7 +41,7 @@ namespace Assets._Project.Actors.Enemies
         {
             foreach (Enemy enemy in _enemies)
             {
-                if (enemy.gameObject.activeSelf)
+                if (enemy.isActiveAndEnabled)
                 {
                     enemy.MoveTo(_target.position);
                 }

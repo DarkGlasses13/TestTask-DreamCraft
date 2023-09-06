@@ -15,14 +15,13 @@ namespace Assets._Project.Projectiles
 
         public Projectile Create(GunItem gun, Vector3 position, Quaternion rotation)
         {
-            Projectile projectile = _projectiles.FirstOrDefault(projectile
+            Projectile projectile = _projectiles.FirstOrDefault(projectile 
                 => projectile.ID == gun.ProjectileKey
-                && projectile.gameObject.activeSelf == false);
+                && projectile.isActiveAndEnabled == false);
 
             if (projectile == null)
             {
-                AsyncOperationHandle<GameObject> instantiate = Addressables
-                .InstantiateAsync(gun.ProjectileKey);
+                AsyncOperationHandle<GameObject> instantiate = Addressables.InstantiateAsync(gun.ProjectileKey);
                 instantiate.WaitForCompletion();
                 projectile = instantiate.Result.GetComponent<Projectile>();
                 projectile.Construct(gun);

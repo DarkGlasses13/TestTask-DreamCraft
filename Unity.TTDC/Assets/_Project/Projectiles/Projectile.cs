@@ -10,10 +10,11 @@ namespace Assets._Project.Projectiles
         public event Action<Projectile, IHaveHealth> OnHit;
 
         [SerializeField] private float _speed;
+        [SerializeField] private float _lifetime;
         private GunItem _gun;
 
         public TrailRenderer Trail { get; private set; }
-        public string ID => _gun.ID;
+        public string ID => _gun.ProjectileKey;
         public int Damage => _gun.Damage;
 
 
@@ -21,6 +22,13 @@ namespace Assets._Project.Projectiles
         {
             Trail = GetComponent<TrailRenderer>();
         }
+
+        private void OnEnable()
+        {
+            Invoke(nameof(OnLifetimeEnded), _lifetime);
+        }
+
+        private void OnLifetimeEnded() => gameObject.SetActive(false);
 
         public void Construct(GunItem gun)
         {
