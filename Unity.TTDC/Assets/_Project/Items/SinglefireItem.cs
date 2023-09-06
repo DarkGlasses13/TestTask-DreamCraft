@@ -8,7 +8,7 @@ namespace Assets._Project.Items
     {
         public override void Use(ICanUseItem user)
         {
-            _projectileController.Create("Bullet", _gunInstance.Muzzle);
+            _projectileController.Create("Bullet", _gunInstance.Muzzle.position, _gunInstance.Muzzle.rotation);
         }
     }
 }

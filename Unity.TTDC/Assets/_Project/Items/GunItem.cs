@@ -6,7 +6,7 @@ namespace Assets._Project.Items
     {
         protected GunInstance _gunInstance;
 
-        [field: SerializeField] public float Spreed { get; private set; }
+        [field: SerializeField, Range(0, 180)] public float Spreed { get; private set; }
         [field: SerializeField] public int Capacity { get; private set; }
         [field: SerializeField] public float ReloadingSpeed { get; private set; }
         [field: SerializeField] public string ProjectileKey { get; private set; }

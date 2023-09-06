@@ -5,11 +5,19 @@ using UnityEngine;
 namespace Assets._Project.Items
 {
     [Serializable]
-    public class ShotgunItem : GunItem
+    public class ShotgunItem : SinglefireItem
     {
+        [field: SerializeField] public int ProjectilesPerShot { get; private set; }
+
         public override void Use(ICanUseItem user)
         {
-            Debug.Log("Shotgun attack");
+
+            for (float i = -Spreed / 2; i < Spreed / 2; i += Spreed / ProjectilesPerShot)
+            {
+                Quaternion rotation = Quaternion.Euler(Vector3.up * (_gunInstance.Muzzle.transform.eulerAngles.y + i));
+                _projectileController.Create("Bullet", _gunInstance.Muzzle.transform.position, rotation);
+            }
+
         }
     }
 }
