@@ -12,6 +12,8 @@ namespace Assets._Project.Actors.Player_Character
         public Transform Transform => transform;
         [field: SerializeField] public Transform Hand { get; private set; }
 
+        public bool IsReachedTarget => throw new System.NotImplementedException();
+
         private void Awake()
         {
             CharacterController controller = GetComponent<CharacterController>();
@@ -21,5 +23,10 @@ namespace Assets._Project.Actors.Player_Character
         public void Move(Vector3 motion) => _mover?.Move(motion);
 
         public void Rotate(Quaternion rotation) => _mover?.Rotate(rotation);
+
+        public void Follow(Vector3 target)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
