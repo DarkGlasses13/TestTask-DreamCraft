@@ -9,13 +9,13 @@ namespace Assets._Project.Items
     {
         [field: SerializeField] public int ProjectilesPerShot { get; private set; }
 
-        public override void Use(ICanUseItem user)
+        public override void StopUse(ICanUseItem user)
         {
 
             for (float i = -Spreed / 2; i < Spreed / 2; i += Spreed / ProjectilesPerShot)
             {
                 Quaternion rotation = Quaternion.Euler(Vector3.up * (_gunInstance.Muzzle.transform.eulerAngles.y + i));
-                _projectileController.Create("Bullet", _gunInstance.Muzzle.transform.position, rotation);
+                _projectileController.Create(ProjectileKey, _gunInstance.Muzzle.transform.position, rotation);
             }
 
         }

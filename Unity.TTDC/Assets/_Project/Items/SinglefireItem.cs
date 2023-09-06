@@ -6,9 +6,9 @@ namespace Assets._Project.Items
     [Serializable]
     public class SinglefireItem : GunItem
     {
-        public override void Use(ICanUseItem user)
+        public override void StopUse(ICanUseItem user)
         {
-            _projectileController.Create("Bullet", _gunInstance.Muzzle.position, _gunInstance.Muzzle.rotation);
+            _projectileController.Create(ProjectileKey, _gunInstance.Muzzle.position, _gunInstance.Muzzle.rotation);
         }
     }
 }

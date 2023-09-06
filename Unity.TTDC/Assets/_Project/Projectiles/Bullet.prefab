@@ -220,7 +220,7 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
-  m_Emitting: 0
+  m_Emitting: 1
 --- !u!54 &2232019379199215061
 Rigidbody:
   m_ObjectHideFlags: 0

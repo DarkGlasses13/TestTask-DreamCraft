@@ -38,6 +38,10 @@ MonoBehaviour:
     m_Address: wpn_Lsr
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: b667b1f41d2c09543a2c62ca69041c9f
+    m_Address: wpn_Mcg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bd8902980be272543bb08355fde5aba5, type: 2}
   m_SchemaSet:

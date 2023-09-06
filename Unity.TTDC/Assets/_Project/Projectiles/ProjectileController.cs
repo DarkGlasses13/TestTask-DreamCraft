@@ -20,15 +20,6 @@ namespace Assets._Project.Projectiles
             return projectile;
         }
 
-        public override void Tick()
-        {
-            for (int i = 0; i < _projectiles.Count; i++)
-            {
-                if (_projectiles[i].gameObject.activeSelf)
-                    _projectiles[i].Move();
-            }
-        }
-
         private Projectile Get(string key)
         {
             Projectile projectile = _projectiles.FirstOrDefault(projectile 
@@ -44,7 +35,10 @@ namespace Assets._Project.Projectiles
                 projectile.Construct(_key);
             }
             else
+            {
+                projectile.Trail.Clear();
                 projectile.gameObject.SetActive(true);
+            }
 
             _projectiles.Add(projectile);
             return projectile;

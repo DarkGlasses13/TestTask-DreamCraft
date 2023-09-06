@@ -8,18 +8,13 @@ namespace Assets._Project.Projectiles
         public event Action<Projectile> OnHit;
 
         [SerializeField] private float _speed;
-        private TrailRenderer _trail;
+        public TrailRenderer Trail { get; private set; }
 
         public string ID { get; private set; }
 
         private void Awake()
         {
-            _trail = GetComponent<TrailRenderer>();
-        }
-
-        private void OnEnable()
-        {
-            _trail.emitting = true;
+            Trail = GetComponent<TrailRenderer>();
         }
 
         public void Construct(string id)
@@ -27,7 +22,7 @@ namespace Assets._Project.Projectiles
             ID = id;
         }
 
-        public virtual void Move() 
+        private void Update()
         {
             transform.Translate(_speed * Time.deltaTime * Vector3.forward);
         }
@@ -36,11 +31,6 @@ namespace Assets._Project.Projectiles
         {
             gameObject.SetActive(false);
             OnHit?.Invoke(this);
-        }
-
-        private void OnDisable()
-        {
-            _trail.emitting = false;
         }
     }
 }

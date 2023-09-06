@@ -62,7 +62,7 @@ namespace Assets._Project
 
         protected override void OnControllersInitializedAndEnabled()
         {
-            _inventory.TryAdd(_itemDatabase.GetByIDs("wpn_Ptl", "wpn_Sgn"));
+            _inventory.TryAdd(_itemDatabase.GetByIDs("wpn_Ptl", "wpn_Sgn", "wpn_Mcg"));
             _playerInput.Enable();
         }
     }

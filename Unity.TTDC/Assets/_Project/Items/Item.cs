@@ -78,7 +78,11 @@ namespace Assets._Project.Items
 
         protected virtual void OnUnequip(IHaveEquipment equipable) { }
 
+        public virtual void StartUse(ICanUseItem user) { }
+
         public virtual void Use(ICanUseItem user) { }
+
+        public virtual void StopUse(ICanUseItem user) { }
 
         public void UnloadInstance()
         {

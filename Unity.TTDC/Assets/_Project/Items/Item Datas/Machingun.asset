@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15e2be5c3be79fd4a95fa2226957cf7e, type: 3}
-  m_Name: Shotgun
+  m_Script: {fileID: 11500000, guid: 2c49a2b6fa2d1bf428bceab1f64b962b, type: 3}
+  m_Name: Machingun
   m_EditorClassIdentifier: 
   _item:
-    <ID>k__BackingField: wpn_Sgn
+    <ID>k__BackingField: wpn_Mcg
     <Name>k__BackingField: 
     <Description>k__BackingField: 
     <Icon>k__BackingField: {fileID: 0}
     <Damage>k__BackingField: 0
     <Distance>k__BackingField: 0
-    <Spreed>k__BackingField: 45
+    <Spreed>k__BackingField: 0
     <Capacity>k__BackingField: 0
     <ReloadingSpeed>k__BackingField: 0
     <ProjectileKey>k__BackingField: Bullet
-    <ProjectilesPerShot>k__BackingField: 10
+    <FireRate>k__BackingField: 30

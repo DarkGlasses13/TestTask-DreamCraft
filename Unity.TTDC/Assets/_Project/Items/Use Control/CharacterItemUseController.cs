@@ -26,14 +26,15 @@ namespace Assets._Project.Items.Use_Control
         private void StartUse()
         {
             _isUsing = true;
+            _equip?.Selected?.StartUse(_user);
         }
 
-        //public override void Tick()
-        //{
-        //    if (_isUsing)
-        //        _equip?.Selected?.Use(_user);
+        public override void Tick()
+        {
+            if (_isUsing)
+                _equip?.Selected?.Use(_user);
 
-        //}
+        }
 
         //public override void FixedTick()
         //{
@@ -44,7 +45,7 @@ namespace Assets._Project.Items.Use_Control
         private void StopUse()
         {
             _isUsing = false;
-            _equip?.Selected?.Use(_user);
+            _equip?.Selected?.StopUse(_user);
         }
 
         protected override void OnDisable()
